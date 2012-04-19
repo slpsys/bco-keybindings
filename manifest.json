@@ -1,0 +1,21 @@
+{
+  "name": "Gmail/vim keybindings for BCO"
+  , "version": "1.0"
+  , "manifest_version": 1
+  , "description": "Gmail/vim-like keybindings to navigate BCO"
+  , "content_scripts": 
+  [
+    {
+      "matches": ["http://hotd.org/*", "http://boardcrewcial.org/*"]
+      , "run_at": "document_end"
+      , "js": ["jquery-1.7.2.min.js", "keybindings.js"]
+    }
+  ]
+  , "offline_enabled": true
+  , "icons": 
+  { 
+    "16": "16.png"
+    , "48": "48.png"
+    , "128": "128.png"
+  }
+}
