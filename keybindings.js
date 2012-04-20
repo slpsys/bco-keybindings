@@ -4,9 +4,8 @@ var MainPage = function () {
   self.offset = 0
   if (localStorage.getItem(indexKey))
     self.offset = parseInt(localStorage.getItem(indexKey))
-    self.dataDiv = $('.data').filter(':last')
-  self.moveCursor = function(direction) {
-    console.log(self.offset)
+    self.dataDiv = $('.data:last')
+    self.moveCursor = function(direction) {
     var newOffset = self.offset + direction
     if (newOffset >= 0 && newOffset <= self.dataDiv.children().length)
     {
@@ -17,9 +16,7 @@ var MainPage = function () {
     }
   }
   self.loadPage = function() {
-    // There's got to be somethign I'm missing here, re: selectors
-    var currentDiv = self.dataDiv.children(nthSelector(self.offset))
-    window.location = currentDiv.children('ul').children('li.subject').children('a').prop('href')
+    window.location = currentDiv.find(nthSelector(self.offset) + ' li.subject a').prop('href')
   }
   self.highlightCurrentOffset = function() {
     self.dataDiv.children(nthSelector(self.offset)).css('font-weight', 'bold')
@@ -54,6 +51,6 @@ else
   $('textarea').blur(function () { editing = false })
   $(document).keydown(function (e) {
     if (e.which === 85 && !editing)
-      history.back()
+      window.location = "/"
   })
 }
